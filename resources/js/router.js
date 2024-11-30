@@ -1,5 +1,4 @@
 import * as VueRouter from 'vue-router';
-import ClientComponent from "./components/ClientComponent.vue";
 import OrderComponent from "./components/OrderComponent.vue";
 import HomeComponent from "./components/HomeComponent.vue";
 
@@ -15,7 +14,13 @@ export default VueRouter.createRouter ({
         },
         {
             path:'/clients',
-            component: ClientComponent
+            component: ()  => import('./components/Client/Index.vue'),
+            name: 'client.index'
+        },
+        {
+            path:'/clients/create',
+            component: ()  => import('./components/Client/Create.vue'),
+            name: 'client.create'
         },
         {
             path:'/orders',

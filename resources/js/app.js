@@ -1,11 +1,13 @@
 import {createApp} from 'vue';
 import router from './router';
-import './bootstrap';
 import App from './components/App.vue';
 import IndexComponent from "./components/IndexComponent.vue";
 import OrderComponent from "./components/OrderComponent.vue";
 import ClientComponent from "./components/ClientComponent.vue";
 
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './bootstrap';
 
 const app = createApp({})
 app.use(router)
