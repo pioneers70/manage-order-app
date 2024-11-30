@@ -1,4 +1,6 @@
 <script>
+import router from "../../router.js";
+
 export default {
     name: "Create",
     data() {
@@ -28,7 +30,8 @@ export default {
                 address_registration: this.address_registration,
                 note: this.note,
             })
-                .then(res => { console.log(res)
+                .then(res => {
+                    router.push({name: 'client.index'})
                 })
         }
     }
