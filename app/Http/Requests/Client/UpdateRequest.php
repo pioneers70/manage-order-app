@@ -24,9 +24,9 @@ class UpdateRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'required|digits:11|unique:clients',
-            'passport_number' => 'nullable|integer',
-            'passport_series' => 'nullable|integer',
+            'phone' => 'required|digits:11',
+            'passport_number' => 'nullable|string',
+            'passport_series' => 'nullable|string',
             'passport_issued' => 'nullable|string|max:255',
             'address_registration' => 'nullable|string|max:255',
             'note' => 'nullable|string|max:255',

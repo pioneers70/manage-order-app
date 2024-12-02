@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|digits:11|unique:clients',
-            'passport_number' => 'nullable|string|',
+            'passport_number' => 'nullable|string',
             'passport_series' => 'nullable|string',
             'passport_issued' => 'nullable|string|max:255',
             'address_registration' => 'nullable|string|max:255',
