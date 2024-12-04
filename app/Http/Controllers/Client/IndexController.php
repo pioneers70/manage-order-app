@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Client\ClientResource;
 use App\Models\Client;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class IndexController extends Controller
 {
-    public function __invoke(): Collection
+    public function __invoke(): AnonymousResourceCollection
     {
-        return Client::all();
+        $client = Client::all();
+
+        return ClientResource::collection($client);
     }
 }

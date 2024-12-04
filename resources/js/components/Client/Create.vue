@@ -1,5 +1,5 @@
 <script>
-import router from "../../router.js";
+
 
 export default {
     name: "Create",
@@ -31,8 +31,13 @@ export default {
                 note: this.note,
             })
                 .then(res => {
-                    router.push({name: 'client.index'})
+                    this.$router.push({name: 'client.index'})
                 })
+        }
+    },
+    computed: {
+        isDisabled(){
+            return this.name && this.phone
         }
     }
 }
@@ -68,7 +73,7 @@ export default {
             <input type="text" v-model="note" placeholder="Примечание" class="form-control">
         </div>
         <div class="mb-3">
-            <input @click.prevent='addClient' type="submit" value="Добавить" class="btn btn-outline-primary">
+            <input :disabled="!isDisabled" @click.prevent='addClient' type="submit" value="Добавить" class="btn btn-outline-primary">
         </div>
     </div>
 

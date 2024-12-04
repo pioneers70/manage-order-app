@@ -11,7 +11,16 @@ export default {
         getClient() {
             axios.get('/api/leads/')
                 .then(res => {
-                    this.leads = res.data
+                    this.leads = res.data.data
+                })
+        },
+        deleteClient(id) {
+            axios.delete(`/api/leads/${id}`)
+               .then(res => {
+                    this.getClient()
+                })
+               .catch(err => {
+                    console.log(err)
                 })
         }
     }
@@ -31,11 +40,15 @@ export default {
                 <th scope="col">Кем выдан документ</th>
                 <th scope="col">Адрес регистрации</th>
                 <th scope="col">Примечание</th>
+                <th scope="col">Настройки</th>
+                <th scope="col">Удалить</th>
             </tr>
             </thead>
             <tbody>
             <tr v-for="client in leads">
-                <th>{{ client.name }}</th>
+                <td>
+                    <router-link :to="{ name: 'client.show', params:{id: client.id}}">{{ client.name }}</router-link>
+                    </td>
                 <td>{{ client.email }}</td>
                 <td>{{ client.phone }}</td>
                 <td>{{ client.passport_series }}</td>
@@ -43,6 +56,12 @@ export default {
                 <td>{{ client.passport_issued }}</td>
                 <td>{{ client.address_registration }}</td>
                 <td>{{ client.note }}</td>
+                <td>
+                    <router-link :to="{name:'client.edit', params:{ id:client.id}}" class="btn btn-success">Изменить</router-link>
+                </td>
+                <td>
+                    <button @click.prevent="deleteClient(client.id)" class="btn btn-danger">Удалить</button>
+                </td>
             </tr>
             </tbody>
         </table>

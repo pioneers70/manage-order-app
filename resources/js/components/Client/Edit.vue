@@ -1,6 +1,5 @@
 <script>
 
-import router from "../../router.js";
 
 export default {
     name: "Edit",
@@ -21,20 +20,20 @@ export default {
     },
     methods: {
         getClient() {
-            axios.get('/api/leads/' + this.$route.params.id)
+            axios.get(`/api/leads/${this.$route.params.id}`)
                 .then(res => {
-                        this.name = res.data.name
-                        this.email = res.data.email
-                        this.phone = res.data.phone
-                        this.passport_series = res.data.passport_series
-                        this.passport_number = res.data.passport_number
-                        this.passport_issued = res.data.passport_issued
-                        this.address_registration = res.data.address_registration
-                        this.note = res.data.note
+                    this.name = res.data.data.name
+                    this.email = res.data.data.email
+                    this.phone = res.data.data.phone
+                    this.passport_series = res.data.data.passport_series
+                    this.passport_number = res.data.data.passport_number
+                    this.passport_issued = res.data.data.passport_issued
+                    this.address_registration = res.data.data.address_registration
+                    this.note = res.data.data.note
                 })
         },
         updateClient() {
-            axios.patch('/api/leads/' + this.$route.params.id,{
+            axios.patch(`/api/leads/${this.$route.params.id}`, {
                 name: this.name,
                 email: this.email,
                 phone: this.phone,
@@ -45,10 +44,10 @@ export default {
                 note: this.note,
 
             })
-               .then(res => {
-                    router.push({ name: 'client.show'});
+                .then(res => {
+                    this.$router.push({name: 'client.show', params: {id: this.$route.params.id}});
                 })
-               .catch(error => {
+                .catch(error => {
                     console.log(error);
                 });
         }

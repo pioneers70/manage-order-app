@@ -28,7 +28,7 @@ export default VueRouter.createRouter ({
             name: 'client.edit'
         },
         {
-            path:'/clients/show',
+            path:'/clients/:id',
             component: ()  => import('./components/Client/Show.vue'),
             name: 'client.show'
         },
